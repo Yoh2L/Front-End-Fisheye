@@ -1,5 +1,5 @@
 function photographerFactory(data) {
-    const { name, portrait, city, country, tagline, price} = data;
+    const { name, portrait, city, country, tagline, price, id} = data;
 
     
 
@@ -7,8 +7,8 @@ function photographerFactory(data) {
         const picture = `assets/photographers/Photographers_ID_Photos/${portrait}`;
         const article = document.createElement( 'article' );
         const anchor = document.createElement( 'a' );
-        anchor.setAttribute('id', name + "_ID")
-        anchor.setAttribute('href',"/photographer.html")
+        anchor.setAttribute('id', id )
+        /* anchor.setAttribute('href',"/photographer.html") */
         const subTxt = document.createElement( 'div' );
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
