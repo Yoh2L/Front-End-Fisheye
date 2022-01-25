@@ -29,12 +29,3 @@
     };
     
     init();
-
-    var test = document.getElementsByTagName("a");
-    var toto = Array.from(test);
-
-    for (let i = 0; i < test.length; i++) {
-        test[i].addEventListener("click", (e) => {
-            console.log("hello");
-        })
-    }

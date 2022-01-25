@@ -8,7 +8,7 @@ function photographerFactory(data) {
         const article = document.createElement( 'article' );
         const anchor = document.createElement( 'a' );
         anchor.setAttribute('id', id )
-        /* anchor.setAttribute('href',"/photographer.html") */
+        anchor.setAttribute('href',"/photographer.html?id=" + id);
         const subTxt = document.createElement( 'div' );
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
