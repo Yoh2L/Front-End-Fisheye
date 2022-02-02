@@ -9,7 +9,7 @@ function dataPhoto(photographers) {
     const h2 = document.createElement( 'h2' );
     const h3 = document.createElement( 'h3' );
     const span = document.createElement( 'SPAN' );
-    const picture = `assets/photographers/Photographers_ID_Photos/${arrayPhot.portrait}`;
+    const picture = `./assets/photographers/Photographers_ID_Photos/${arrayPhot.portrait}`;
     const img = document.createElement( 'img' );
     img.setAttribute("src", picture)
 

@@ -4,7 +4,7 @@ function photographerFactory(data) {
     
 
     function getUserCardDOM() {
-        const picture = `assets/photographers/Photographers_ID_Photos/${portrait}`;
+        const picture = `./assets/photographers/Photographers_ID_Photos/${portrait}`;
         const article = document.createElement( 'article' );
         const anchor = document.createElement( 'a' );
         anchor.setAttribute('id', id )
