@@ -36,20 +36,17 @@ function displayGallery(data) {
     const media = data.media;
     const arrayPhot = photographers.find(m => m.id == idPhot)
     const arrayGallery = media.filter(m => m.photographerId == idPhot)
-/*     console.log(arrayGallery);
-    console.log(arrayGallery.length); */
+    console.log(arrayGallery);
+    console.log(arrayGallery.length);
     
-/*     arrayGallery.forEach(element => {
-        console.log("hello");
-    }); */
+    arrayGallery.forEach(element => {
+        const picture = `assets/photographers/${arrayPhot.name}/${element.image}`;
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", picture)
+        const article = document.createElement( 'article' );
+        photGallery.appendChild(article);
+        article.appendChild(img);
 
-    for (let i =  0; i < arrayGallery.length; i++) {
-        let test = arrayGallery[i].id;
-        console.log(arrayGallery[i].id);
-        console.log(test);
-        console.log('.');
+    });
 
-
-        i++;
-    }
 }
