@@ -2,10 +2,47 @@
     display: none;
 }
 
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+}
+
+h1 {
+    color: #901C1C;
+    margin-right: 100px;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+h3  {
+    margin: 0;
+    padding: 0;
+}
+
+.logo {
+    height: 50px;
+    margin-left: 100px;
+}
+
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photograph-header section img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .contact_button {

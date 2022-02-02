@@ -1,7 +1,7 @@
     async function getPhotographers() {
-        let url = "./data/photographers.json"
+        let json = "./data/photographers.json"
         try {
-            let response = await fetch(url);
+            let response = await fetch(json);
             return await response.json();
         } catch (error) {
             console.error(error);

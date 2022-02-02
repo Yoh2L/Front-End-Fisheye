@@ -44,7 +44,31 @@ h3  {
     margin-top: 100px;
 }
 
-.photographer_section article, a, div {
+.photographer_section article {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.photographer_section a {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.photographer_section div {
     justify-self: center;
     display: flex;
     justify-content: center;
