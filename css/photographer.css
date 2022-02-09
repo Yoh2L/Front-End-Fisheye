@@ -18,11 +18,23 @@ h1 {
 
 h2 {
     font-weight: normal;
+    margin: 0;
+    padding: 0;
+    color: #D3573C;
+    font-family: "DM SANS";
+    font-size: 64px;
 }
 
 h3  {
     margin: 0;
     padding: 0;
+    font-family: "DM Sans";
+    font-size: 24px;
+    color: #901C1C;
+    font-weight: normal;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .logo {
@@ -34,12 +46,18 @@ h3  {
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    padding: 0 50px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
-.photograph-header section img {
+.bio span {
+    font-family: "DM Sans";
+    font-size: 18px;
+}
+
+.photograph-header div img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -49,30 +67,61 @@ h3  {
 .photograph-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+    gap: 30px;
     margin-top: 100px;
     justify-items: center;
 }
 
-.photograph-gallery article img {
+.article-media  {
     width: 350px;
     height: 300px;
     object-fit: cover;
+    border-radius: 2%;
+    object-position: center top;
 }
 
 .subtext {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 350px;
+    margin: 0.5em 0;
+    gap: 10px;
+}
+
+.likes {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-family: "DM Sans";
+    font-size: 24px;
+    color: #901C1C;
 }
 
 .photograph-sumn {
-    width: max-content;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    height: 60px;
+    width: fit-content;
     padding: 1rem;
+    gap: 30px;
     background-color: #DB8876;
     position: fixed;
-    left: 90%;
+    left: 85%;
     bottom: 0;
+    font-size: 24px;
+    border-radius: 5px;
+}
+
+.photograph-sumn div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.aside-heart {
+    font-size: 20px;
 }
 
 .contact_button {

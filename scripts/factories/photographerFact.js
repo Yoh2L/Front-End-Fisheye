@@ -1,87 +1,97 @@
-function dataPhoto(data) {
+function dataPhoto(arrayPhot) {
 
-    const url = document.URL;
-    const idPhot = url.substring(url.indexOf("=")+1);
-    const photographers = data.photographers;
-    const media = data.media;
-    const arrayPhot = photographers.find(m => m.id == idPhot)
-    const arrayGallery = media.filter(m => m.photographerId == idPhot)
+// Creation du photograph-header
+    const contactBtn = document.querySelector('.contact_button');
     const photHeader = document.querySelector('.photograph-header');
-    const photSumn = document.querySelector('.photograph-sumn');
-    const section = document.createElement( 'section' );
-    const h2 = document.createElement( 'h2' );
-    const h3 = document.createElement( 'h3' );
-    const span = document.createElement( 'SPAN' );
+    const photBio = document.createElement('div');
+    photBio.classList.add('bio');
+    const photPic = document.createElement('div');
+    const photName = document.createElement( 'h2' );
+    const photCity = document.createElement( 'h3' );
+    const photSpeach = document.createElement( 'SPAN' );
+
     const picture = `./assets/photographers/Photographers_ID_Photos/${arrayPhot.portrait}`;
     const img = document.createElement( 'img' );
     img.setAttribute("src", picture)
 
-    
-    h2.textContent = arrayPhot.name;
-    h3.textContent = arrayPhot.city + ", " + arrayPhot.country;
-    span.textContent = arrayPhot.tagline;
+    photName.textContent = arrayPhot.name;
+    photCity.textContent = arrayPhot.city + ", " + arrayPhot.country;
+    photSpeach.textContent = arrayPhot.tagline;
 
-    photHeader.appendChild(section);
-    section.appendChild(h2);
-    section.appendChild(h3);
-    section.appendChild(span);
-    section.appendChild(img);
+    photHeader.appendChild(photBio);
+    photHeader.appendChild(contactBtn);
+    photBio.appendChild(photName);
+    photBio.appendChild(photCity);
+    photBio.appendChild(photSpeach);
+    photHeader.appendChild(photPic);
+    photPic.appendChild(img);
+    photHeader.insertBefore(photBio, contactBtn);
+};
 
-    var totalLikes = 0;
+
+function displayGallery(arrayGallery) {
+
+// Generation de la galerie du photographe
+    const photGallery = document.querySelector(".photograph-gallery");
+    arrayGallery.forEach(element => {
+        const article = document.createElement( 'article' );
+
+        const media = document.createElement( element.image ?'img': 'video' );
+        media.setAttribute("src", element.url)
+        media.classList.add('article-media');
+
+        const subText = document.createElement( 'div');
+        subText.classList.add('subtext');
+
+        const picTitle = document.createElement( 'h3' );
+        picTitle.textContent = element.title;
+        
+        const likes = document.createElement( 'div' );
+        likes.classList.add('likes');
+
+        const heart = document.createElement( 'SPAN');
+        heart.classList.add('fas', 'fa-heart');
+
+        const nbrLikes = document.createElement( 'SPAN');
+        nbrLikes.textContent = element.likes;
+
+
+        photGallery.appendChild(article);
+        article.appendChild(media);
+        article.appendChild(subText);
+        subText.appendChild(picTitle);
+        subText.appendChild(likes);
+        likes.appendChild(nbrLikes);
+        likes.appendChild(heart);
+
+    });
+
+}
+
+function asidePhot(arrayGallery, price) {
+
+    //Affichage tarif + compteur de likes fixé au bas de l'écran
+    const photSumn = document.querySelector('.photograph-sumn');
+    let totalLikes = 0;
 
     arrayGallery.forEach(element => {
         totalLikes += parseInt(element.likes);
     });
+    
+    /* const toto = arrayGallery.reduce((acc,cur)=>acc+= parseInt(cur.likes),0) */
 
-
-
+    const asideTotalLikes = document.createElement( 'div' );
     const asideLikes = document.createElement( 'SPAN' );
     const asideHeart = document.createElement( 'SPAN' );
+    asideHeart.classList.add('aside-heart');
     const asidePrice = document.createElement( 'SPAN' );
+
     asideLikes.textContent = totalLikes;
-    asideHeart.classList.add('fas');
-    asideHeart.classList.add('fa-heart');
-    asidePrice.textContent = arrayPhot.price + " €/jour";
-    photSumn.appendChild(asideLikes);
-    photSumn.appendChild(asideHeart);
+    asideHeart.classList.add('fas', 'fa-heart');
+    asidePrice.textContent = price + " €/jour";
+
+    photSumn.appendChild(asideTotalLikes);
+    asideTotalLikes.appendChild(asideLikes);
+    asideTotalLikes.appendChild(asideHeart);
     photSumn.appendChild(asidePrice);
-};
-
-
-function displayGallery(data) {
-
-    const photGallery = document.querySelector(".photograph-gallery");
-    const url = document.URL;
-    const idPhot = url.substring(url.indexOf("=")+1);
-    const photographers = data.photographers;
-    const media = data.media;
-    const arrayPhot = photographers.find(m => m.id == idPhot)
-    const arrayGallery = media.filter(m => m.photographerId == idPhot)
-
-    
-    arrayGallery.forEach(element => {
-        const article = document.createElement( 'article' );
-        const picture = `assets/photographers/${arrayPhot.name}/${element.image}`;
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        const div = document.createElement( 'div');
-        div.classList.add('subtext');
-        const heart = document.createElement( 'SPAN');
-        heart.classList.add('fas');
-        heart.classList.add('fa-heart');
-        const h3 = document.createElement( 'h3' );
-        const span = document.createElement( 'SPAN');
-        h3.textContent = element.title;
-        span.textContent = element.likes;
-
-
-        photGallery.appendChild(article);
-        article.appendChild(img);
-        article.appendChild(div);
-        div.appendChild(h3);
-        div.appendChild(span);
-        div.appendChild(heart);
-
-    });
-
 }

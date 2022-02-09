@@ -16,12 +16,24 @@ async function getPhotographers() {
 
 
 async function init() {
-    // Récupère les datas des photographes
-    const data = await getPhotographers();
-    
+// Récupère les datas des photographes
+    const {photographers, media} = await getPhotographers();
 
-    dataPhoto(data);
-    displayGallery(data);
+// Recuperation URL / ID / Data json
+    const url = document.URL;
+    const idPhot = url.substring(url.indexOf("=")+1);
+
+// Recherche data photographe + filtres de ses medias   
+    const arrayPhot = photographers.find(m => m.id == idPhot)
+    let arrayGallery = media.filter(m => m.photographerId == idPhot)
+    arrayGallery = arrayGallery.map(media =>{
+        media.url = `assets/photographers/${arrayPhot.name}/${media.image||media.video}`;
+        return media;
+    })
+
+    dataPhoto(arrayPhot);
+    displayGallery(arrayGallery);
+    asidePhot(arrayGallery, arrayPhot.price)
 
 };
 
