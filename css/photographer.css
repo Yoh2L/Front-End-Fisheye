@@ -43,13 +43,15 @@ h3  {
 }
 
 .photograph-header {
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+    align-items: center;
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
     padding: 0 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    
 }
 
 .bio span {
@@ -70,9 +72,21 @@ h3  {
     gap: 30px;
     margin-top: 100px;
     justify-items: center;
+    animation: 2s ease-in-out slide-in-bottom;
 }
 
-.article-media  {
+@keyframes slide-in-bottom {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.article-media {
     width: 350px;
     height: 300px;
     object-fit: cover;
@@ -112,6 +126,19 @@ h3  {
     bottom: 0;
     font-size: 24px;
     border-radius: 5px;
+    transform: translateY(60px);
+    animation: 1s ease-in-out 2s fromBot;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fromBot {
+    0% {
+        transform: translateY(60px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
 .photograph-sumn div {
@@ -122,6 +149,89 @@ h3  {
 
 .aside-heart {
     font-size: 20px;
+}
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 10;
+    overflow: auto;
+    animation: lightboxIn .5s;
+    transition: opacity .3s;
+}
+
+.lightbox.fadeOut {
+    opacity: 0;
+}
+
+@keyframes lightboxIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.lightbox__container img,
+.lightbox__container video {
+    height: 100%;
+    
+}
+
+
+.lightbox__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    margin-left: 70px;
+    margin-right: 70px;
+    overflow: hidden;
+    height: 90vh;
+}
+
+.lightbox__next,
+.lightbox__prev {
+    background: url(../assets/icons/arrow.svg) center center / 40px 100% no-repeat ;
+    width: 50px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: -14px 10px 0 10px;
+    z-index: 11;
+    text-indent: -3000px;
+}
+
+.lightbox__next {
+    left: auto;
+    right: 0;
+    transform: rotate(180deg);
+}
+
+.lightbox__close {
+    background: url(..//assets/icons/close-modal.svg) center center / 100% 100% no-repeat ;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 42px;
+    width: 42px;
+    margin-top: 20px;
+    width: 50px;
+    text-indent: 3000px;
+    z-index: 12;
+}
+
+.lightbox button {
+    opacity: .5;
+    cursor: pointer;
+    border: none;
+    transform: .3s;
+}
+
+.lightbox button:hover {
+    opacity: 1;
 }
 
 .contact_button {

@@ -1,3 +1,5 @@
+import Lightbox from "../components/lightbox.js";
+
 async function getPhotographers() {
     let json = "./data/photographers.json"
     try {
@@ -11,29 +13,30 @@ async function getPhotographers() {
 };
 
 
-
-
-
-
 async function init() {
 // Récupère les datas des photographes
     const {photographers, media} = await getPhotographers();
 
-// Recuperation URL / ID / Data json
-    const url = document.URL;
-    const idPhot = url.substring(url.indexOf("=")+1);
+// Recuperation URL / ID
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const idPhot = urlParams.get('id');
 
 // Recherche data photographe + filtres de ses medias   
-    const arrayPhot = photographers.find(m => m.id == idPhot)
+    const photographer = photographers.find(m => m.id == idPhot)
+    
     let arrayGallery = media.filter(m => m.photographerId == idPhot)
     arrayGallery = arrayGallery.map(media =>{
-        media.url = `assets/photographers/${arrayPhot.name}/${media.image||media.video}`;
+        media.url = `assets/photographers/${photographer.name}/${media.image||media.video}`;
         return media;
     })
 
-    dataPhoto(arrayPhot);
+    const toto = photographerFactory(photographer);
+    toto.generatephotographerCard();
     displayGallery(arrayGallery);
-    asidePhot(arrayGallery, arrayPhot.price)
+    asidePhot(arrayGallery, photographer.price)
+    new Lightbox();
 
 };
 

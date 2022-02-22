@@ -1,41 +1,52 @@
-function dataPhoto(arrayPhot) {
+function photographerFactory (data) {
+    const { name, portrait, city, country, tagline} = data;
 
-// Creation du photograph-header
-    const contactBtn = document.querySelector('.contact_button');
-    const photHeader = document.querySelector('.photograph-header');
-    const photBio = document.createElement('div');
-    photBio.classList.add('bio');
-    const photPic = document.createElement('div');
-    const photName = document.createElement( 'h2' );
-    const photCity = document.createElement( 'h3' );
-    const photSpeach = document.createElement( 'SPAN' );
+    function generatephotographerCard () {
+        const contactBtn = document.querySelector('.contact_button');
+        const photHeader = document.querySelector('.photograph-header');
 
-    const picture = `./assets/photographers/Photographers_ID_Photos/${arrayPhot.portrait}`;
-    const img = document.createElement( 'img' );
-    img.setAttribute("src", picture)
+        // Creation de la  bio de l'artiste
+        const photBio = document.createElement('div');
+        photBio.classList.add('bio');
+        const photName = document.createElement( 'h2' );
+        const photCity = document.createElement( 'h3' );
+        const photSpeach = document.createElement( 'SPAN' );
+        photName.textContent = name;
+        photCity.textContent = city + ", " + country;
+        photSpeach.textContent = tagline;
 
-    photName.textContent = arrayPhot.name;
-    photCity.textContent = arrayPhot.city + ", " + arrayPhot.country;
-    photSpeach.textContent = arrayPhot.tagline;
+        // Creation de la photo de l'artiste
+        const photPic = document.createElement('div');
+        const picture = `./assets/photographers/Photographers_ID_Photos/${portrait}`;
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", picture)
 
-    photHeader.appendChild(photBio);
-    photHeader.appendChild(contactBtn);
-    photBio.appendChild(photName);
-    photBio.appendChild(photCity);
-    photBio.appendChild(photSpeach);
-    photHeader.appendChild(photPic);
-    photPic.appendChild(img);
-    photHeader.insertBefore(photBio, contactBtn);
-};
+        // Gestion de l'arborescence DOM
+        photHeader.appendChild(photBio);
+        photHeader.appendChild(contactBtn);
+        photBio.appendChild(photName);
+        photBio.appendChild(photCity);
+        photBio.appendChild(photSpeach);
+        photHeader.appendChild(photPic);
+        photPic.appendChild(img);
+        photHeader.insertBefore(photBio, contactBtn);
 
-
-function displayGallery(arrayGallery) {
+        return (photHeader);
+    }
+    return { generatephotographerCard }
+}
 
 // Generation de la galerie du photographe
+function displayGallery(arrayGallery) {
+
+
     const photGallery = document.querySelector(".photograph-gallery");
+
+    // Generation de tous les articles de l'artiste
     arrayGallery.forEach(element => {
         const article = document.createElement( 'article' );
-
+        const link = document.createElement( 'a' );
+        link.setAttribute("href", element.url);
         const media = document.createElement( element.image ?'img': 'video' );
         media.setAttribute("src", element.url)
         media.classList.add('article-media');
@@ -57,7 +68,8 @@ function displayGallery(arrayGallery) {
 
 
         photGallery.appendChild(article);
-        article.appendChild(media);
+        article.appendChild(link);
+        link.appendChild(media);
         article.appendChild(subText);
         subText.appendChild(picTitle);
         subText.appendChild(likes);
@@ -68,30 +80,3 @@ function displayGallery(arrayGallery) {
 
 }
 
-function asidePhot(arrayGallery, price) {
-
-    //Affichage tarif + compteur de likes fixé au bas de l'écran
-    const photSumn = document.querySelector('.photograph-sumn');
-    let totalLikes = 0;
-
-    arrayGallery.forEach(element => {
-        totalLikes += parseInt(element.likes);
-    });
-    
-    /* const toto = arrayGallery.reduce((acc,cur)=>acc+= parseInt(cur.likes),0) */
-
-    const asideTotalLikes = document.createElement( 'div' );
-    const asideLikes = document.createElement( 'SPAN' );
-    const asideHeart = document.createElement( 'SPAN' );
-    asideHeart.classList.add('aside-heart');
-    const asidePrice = document.createElement( 'SPAN' );
-
-    asideLikes.textContent = totalLikes;
-    asideHeart.classList.add('fas', 'fa-heart');
-    asidePrice.textContent = price + " €/jour";
-
-    photSumn.appendChild(asideTotalLikes);
-    asideTotalLikes.appendChild(asideLikes);
-    asideTotalLikes.appendChild(asideHeart);
-    photSumn.appendChild(asidePrice);
-}
