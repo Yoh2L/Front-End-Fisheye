@@ -32,11 +32,13 @@ async function init() {
         return media;
     })
 
-    const toto = photographerFactory(photographer);
-    toto.generatephotographerCard();
-    displayGallery(arrayGallery);
+    const photographerDOM = photographerFactory(photographer);
+    photographerDOM.generatephotographerCard();
+
+    const galleryDOM = galleryFactory(arrayGallery)
+    galleryDOM.generateGallery();
     asidePhot(arrayGallery, photographer.price)
-    new Lightbox();
+    Lightbox(arrayGallery);
 
 };
 

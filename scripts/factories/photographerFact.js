@@ -36,8 +36,61 @@ function photographerFactory (data) {
     return { generatephotographerCard }
 }
 
+
 // Generation de la galerie du photographe
-function displayGallery(arrayGallery) {
+function galleryFactory(data) {
+    const { id, photographerId, title, image, video, likes, date, price, url} = data;
+    console.log(data);
+
+function generateGallery() {
+
+
+    const photGallery = document.querySelector(".photograph-gallery");
+
+    // Generation de tous les articles de l'artiste
+    data.forEach(element => {
+        const article = document.createElement( 'article' );
+        const link = document.createElement( 'a' );
+        link.setAttribute("href", element.url);
+        const media = document.createElement( element.image ?'img': 'video' );
+        media.setAttribute("src", element.url)
+        media.classList.add('article-media');
+
+        const subText = document.createElement( 'div');
+        subText.classList.add('subtext');
+
+        const picTitle = document.createElement( 'h3' );
+        picTitle.textContent = element.title;
+        
+        const totalLikes = document.createElement( 'div' );
+        totalLikes.classList.add('likes');
+
+        const heart = document.createElement( 'SPAN');
+        heart.classList.add('fas', 'fa-heart');
+
+        const nbrLikes = document.createElement( 'SPAN');
+        nbrLikes.textContent = element.likes;
+
+
+        photGallery.appendChild(article);
+        article.appendChild(link);
+        link.appendChild(media);
+        article.appendChild(subText);
+        subText.appendChild(picTitle);
+        subText.appendChild(totalLikes);
+        totalLikes.appendChild(nbrLikes);
+        totalLikes.appendChild(heart);
+        return (photGallery);
+    } 
+    );
+    
+}
+    return { generateGallery }
+}
+
+
+
+/* function displayGallery(arrayGallery) {
 
 
     const photGallery = document.querySelector(".photograph-gallery");
@@ -79,4 +132,4 @@ function displayGallery(arrayGallery) {
     });
 
 }
-
+ */
