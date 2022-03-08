@@ -66,6 +66,15 @@ h3  {
     object-fit: cover;
 }
 
+.gallery__sort {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 20px 100px;
+    gap: 20px;
+}
+
+
 .photograph-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

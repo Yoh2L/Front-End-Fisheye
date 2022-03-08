@@ -1,60 +1,32 @@
-/* export default class Lightbox {
+export default function Lightbox() {
 
-    constructor () {
-        const links = document.querySelectorAll('.article-media')
-        console.log(links);
-            links.forEach(link => link.addEventListener('click', e =>
-                {
-                e.preventDefault();
-                document.body.appendChild(this.buildDOM(e.target.getAttribute('src')));
-            }));
-    }
-
-/* @param url de l'image */
-
-
-/* fermeture lightbox / mouse event */
-/* close (e) {
-    e.preventDefault();
-    this.element.classList.add('fadeOut');
-    window.setTimeout(() => {
-        this.element.parentElement.removeChild(this.element);
-    }, 500)
-}
- */
-
-/* @param url de l'image
-@return html element */
-/*     buildDOM (url) {
-        const dom = document.createElement('div')
-        dom.classList.add('lightbox')
-        dom.innerHTML = `<div class="lightbox">
-        <button class="lightbox__close">Fermer</button>
-        <button class="lightbox__next">Suivant</button>
-        <button class="lightbox__prev">Précédent</button>
-        <div class="lightbox__container">
-            <img src="${url}" alt="">
-        </div>`
-    dom.querySelector('.lightbox__close').addEventListener('click',
-    this.close.bind(this))
-    return dom
-    } */
-//}
-
-export default function Lightbox(data) {
     const lightboxDOM = document.querySelector('.lightbox');
     lightboxDOM.style.display = "none";
     const links = Array.from(document.querySelectorAll('.article-media'));
     const gallery = links.map(link => link.getAttribute('src'));
-    const mediaUrl = document.querySelector('.lightbox__media');
+    const mediaVideo = document.querySelector('.media__video');
+    const mediaImg = document.querySelector('.media__img');
 
 // Open Modal
-    links.forEach(link => link.addEventListener('click', e =>
+    links.forEach(link => {link.addEventListener('click', e =>
         {
         e.preventDefault();
-        mediaUrl.setAttribute("src", e.target.getAttribute('src'));
+        if(link.tagName == 'VIDEO') {
+            mediaVideo.setAttribute("src", e.target.getAttribute('src'));
+            mediaImg.setAttribute("src", "");
+            mediaImg.style.display = "none";
+            mediaVideo.style.display = "block";
+    }
+
+        if(link.tagName =='IMG') {
+            mediaImg.setAttribute("src", e.target.getAttribute('src'));
+            mediaVideo.setAttribute("src", "");
+            mediaVideo.style.display = "none";
+            mediaImg.style.display = "block";
+        }
+
         lightboxDOM.style.display = "block";
-    }));
+    })});
 
 // Close Modal
     const closeModal = document.querySelector('.lightbox__close')
@@ -65,6 +37,8 @@ export default function Lightbox(data) {
 // Event listener next
     const nextModal = document.querySelector('.lightbox__next')
         nextModal.addEventListener('click', e => {
+            const mediasUrl = document.querySelectorAll('.lightbox__media');
+            const mediaUrl = Array.from(mediasUrl).find(el => el.style.display === "block");
             const url2 = mediaUrl.src.split('assets')[1];
             let url = "assets" + url2;
             url = decodeURI(url);
@@ -72,12 +46,24 @@ export default function Lightbox(data) {
             if (i == gallery.length - 1) {
                 i = -1;
             }
-            mediaUrl.setAttribute("src", gallery[i + 1]);
+            if(gallery[i+1].search(/.mp4/) == '-1') {
+                mediaImg.setAttribute("src", gallery[i + 1]);
+                mediaVideo.style.display = "none";
+                mediaImg.style.display = "block";
+            }
+            if(gallery[i+1].search(/.jpg/) == '-1') {
+                mediaVideo.setAttribute("src", gallery[i + 1]);
+                mediaImg.style.display = "none";
+                mediaVideo.style.display = "block";
+            }
+            
         });
 
 // Event listener previous
     const prevModal = document.querySelector('.lightbox__prev')
         prevModal.addEventListener('click', e => {
+            const mediasUrl = document.querySelectorAll('.lightbox__media');
+            const mediaUrl = Array.from(mediasUrl).find(el => el.style.display === "block");
             const url2 = mediaUrl.src.split('assets')[1];
             let url = "assets" + url2;
             url = decodeURI(url);
@@ -85,7 +71,16 @@ export default function Lightbox(data) {
             if (i == 0) {
                 i = gallery.length;
             }
-            mediaUrl.setAttribute("src", gallery[i - 1]);
+            if(gallery[i-1].search(/.mp4/) == '-1') {
+                mediaImg.setAttribute("src", gallery[i - 1]);
+                mediaVideo.style.display = "none";
+                mediaImg.style.display = "block";
+            }
+            if(gallery[i-1].search(/.jpg/) == '-1') {
+                mediaVideo.setAttribute("src", gallery[i - 1]);
+                mediaImg.style.display = "none";
+                mediaVideo.style.display = "block";
+            }
         });
 
 
