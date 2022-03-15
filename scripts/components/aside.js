@@ -17,6 +17,7 @@ function asidePhot(arrayGallery, price) {
     asideHeart.classList.add('aside-heart');
     const asidePrice = document.createElement( 'SPAN' );
 
+    asideLikes.classList.add('asideLikes');
     asideLikes.textContent = totalLikes;
     asideHeart.classList.add('fas', 'fa-heart');
     asidePrice.textContent = price + " €/jour";

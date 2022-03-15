@@ -121,6 +121,10 @@ h3  {
     color: #901C1C;
 }
 
+.likes{
+    cursor: pointer;
+}
+
 .photograph-sumn {
     display: flex;
     flex-direction: row;
@@ -259,13 +263,21 @@ h3  {
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    overflow: auto;
+    animation: lightboxIn .5s;
+    transition: opacity .3s;
 }
 
 .modal header {
@@ -281,6 +293,17 @@ h3  {
     font-size: 64px;
     font-weight: normal;
     text-align: center;
+}
+.photName__div {
+font-size: 64px;
+font-weight: normal;
+text-align: center;
+font-weight: normal;
+margin: 0;
+padding: 0;
+color: #D3573C;
+font-family: "DM SANS";
+font-size: 64px;
 }
 
 form {
@@ -301,6 +324,7 @@ form div {
     width: 100%;
     align-items: self-start;
     margin-bottom: 26px;
+    gap: 10px;
 }
 
 form input {

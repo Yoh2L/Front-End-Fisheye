@@ -39,7 +39,7 @@ function photographerFactory (data) {
 
 // Generation de la galerie du photographe
 function galleryFactory(data) {
-    const { title, image, video, likes, date, url} = data;
+    const { title, image, likes, url, id} = data;
 
 function generateGallery() {
     
@@ -51,6 +51,7 @@ function generateGallery() {
         const media = document.createElement( image ?'img': 'video' );
         media.setAttribute("src", url)
         media.classList.add('article-media');
+        media.id = id;
 
         const subText = document.createElement( 'div');
         subText.classList.add('subtext');
@@ -61,10 +62,15 @@ function generateGallery() {
         const totalLikes = document.createElement( 'div' );
         totalLikes.classList.add('likes');
 
-        const heart = document.createElement( 'SPAN');
-        heart.classList.add('fas', 'fa-heart');
+/*         const heart_div = document.createElement( 'div' );
+        heart_div.classList.add('heart_div');
+        const heart_far = document.createElement( 'SPAN');
+        heart_far.classList.add('far', 'fa-heart'); */
+        const heart_fas = document.createElement( 'SPAN');
+        heart_fas.classList.add('fas', 'fa-heart');
 
         const nbrLikes = document.createElement( 'SPAN');
+        nbrLikes.classList.add('nbrLikes');
         nbrLikes.textContent = likes;
 
 
@@ -74,7 +80,9 @@ function generateGallery() {
         subText.appendChild(picTitle);
         subText.appendChild(totalLikes);
         totalLikes.appendChild(nbrLikes);
-        totalLikes.appendChild(heart);
+        totalLikes.appendChild(heart_fas);
+/*         heart_div.appendChild(heart_fas);
+        heart_div.appendChild(heart_far); */
         return (article);
     
 }

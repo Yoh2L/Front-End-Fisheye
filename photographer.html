@@ -63,13 +63,21 @@
           <header>
             <h2>Contactez-moi</h2>
             <img src="./assets/icons/close.svg" onclick="closeModal()" />
+            
           </header>
           <form>
+            <div class="photName__div"></div>
             <div>
               <label>Prénom</label>
-              <input />
+              <input type="text" id="fname">
+              <label>Nom</label>
+              <input type="text" id="name">
+              <label>Email</label>
+              <input type="text" id="email">
+              <label>Votre message</label>
+              <input type="text" id="message">
             </div>
-            <button class="contact_button">Envoyer</button>
+            <button type="button" class="sendForm contact_button">Envoyer</button>
           </form>
         </div>
       </div>

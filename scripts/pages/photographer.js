@@ -19,7 +19,6 @@ function displayPhotographer(photographer) {
 
 };
 
-
 function displayGallery(arrayGallery) {
     const photGallery = document.querySelector(".photograph-gallery");
 
@@ -28,10 +27,9 @@ function displayGallery(arrayGallery) {
         const mediaDOM = mediaModel.generateGallery();
         photGallery.appendChild(mediaDOM);
     });
-
+    Lightbox(arrayGallery);
     
 }
-
 
 async function init() {
 // Récupère les datas des photographes
@@ -54,8 +52,9 @@ async function init() {
 
     displayPhotographer(photographer);
     asidePhot(arrayGallery, photographer.price)
-    Lightbox();
     sort(arrayGallery);
+    sortPopular(arrayGallery);
+    
     
 };
 
@@ -64,8 +63,7 @@ init();
 
 
 function sort(arrayGallery) {
-    var getSelect = document.getElementById("select__sort");
-    sortPopular(arrayGallery);
+    let getSelect = document.getElementById("select__sort");
     getSelect.addEventListener('change', e => {
         switch (e.target.value) {
             case "popular" :
@@ -94,7 +92,8 @@ function sortPopular(arrayGallery) {
     const photGallery = document.querySelector(".photograph-gallery");
     photGallery.innerHTML = "";
     displayGallery(arrayGallery);
-    Lightbox();
+    Likes();
+    
 };
 
 function sortTitle(arrayGallery) {
@@ -110,7 +109,8 @@ function sortTitle(arrayGallery) {
     const photGallery = document.querySelector(".photograph-gallery");
     photGallery.innerHTML = "";
     displayGallery(arrayGallery);
-    Lightbox();
+    Likes();
+    
 };
 
 function sortDate(arrayGallery) {
@@ -126,6 +126,31 @@ function sortDate(arrayGallery) {
     const photGallery = document.querySelector(".photograph-gallery");
     photGallery.innerHTML = "";
     displayGallery(arrayGallery);
-    Lightbox();
-    console.log(arrayGallery);
+    Likes();
+    
 };
+
+
+function Likes() {
+    const likes = document.querySelectorAll(".likes");
+
+    likes.forEach(element => {element.addEventListener('click', e => {
+            let nbrLikes = element.querySelector(".nbrLikes");
+            let asideLikes = document.querySelector('.asideLikes');
+
+            if (nbrLikes.classList.contains('liked')) {
+                nbrLikes.textContent--;
+                nbrLikes.classList.remove('liked');
+                asideLikes.textContent--;
+            }
+            else {
+                nbrLikes.classList.add('liked');
+                nbrLikes.textContent++;
+                asideLikes.textContent++;
+            }
+
+            
+        });
+    });
+
+}
