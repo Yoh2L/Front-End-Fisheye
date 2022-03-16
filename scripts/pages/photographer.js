@@ -92,7 +92,7 @@ function sortPopular(arrayGallery) {
     const photGallery = document.querySelector(".photograph-gallery");
     photGallery.innerHTML = "";
     displayGallery(arrayGallery);
-    Likes();
+    Likes(arrayGallery);
     
 };
 
@@ -109,7 +109,7 @@ function sortTitle(arrayGallery) {
     const photGallery = document.querySelector(".photograph-gallery");
     photGallery.innerHTML = "";
     displayGallery(arrayGallery);
-    Likes();
+    Likes(arrayGallery);
     
 };
 
@@ -126,27 +126,32 @@ function sortDate(arrayGallery) {
     const photGallery = document.querySelector(".photograph-gallery");
     photGallery.innerHTML = "";
     displayGallery(arrayGallery);
-    Likes();
+    Likes(arrayGallery);
     
 };
 
 
-function Likes() {
+function Likes(arrayGallery) {
     const likes = document.querySelectorAll(".likes");
 
     likes.forEach(element => {element.addEventListener('click', e => {
             let nbrLikes = element.querySelector(".nbrLikes");
             let asideLikes = document.querySelector('.asideLikes');
+            const mediaID = element.parentElement.parentElement.firstChild.firstChild.id;
+            const mediaLikes = arrayGallery.find(element => element.id == mediaID);
 
-            if (nbrLikes.classList.contains('liked')) {
+            if (mediaLikes.like == "liked") {
                 nbrLikes.textContent--;
-                nbrLikes.classList.remove('liked');
+                mediaLikes.likes--;
+                mediaLikes.like = "";
                 asideLikes.textContent--;
+                console.log(mediaLikes);
             }
             else {
-                nbrLikes.classList.add('liked');
                 nbrLikes.textContent++;
                 asideLikes.textContent++;
+                mediaLikes.likes++;
+                mediaLikes.like = "liked";
             }
 
             

@@ -195,13 +195,22 @@ h3  {
 
 .lightbox__container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 20px;
+    padding-top: 50px;
+    padding-bottom: 20px;
     margin-left: 70px;
     margin-right: 70px;
     overflow: hidden;
     height: 90vh;
+}
+
+.lightbox__media__name {
+    padding-top: 5px;
+    font-size: 32px;
+    color: #901C1C;
+    font-family: "DM Sans";
 }
 
 .lightbox__next,

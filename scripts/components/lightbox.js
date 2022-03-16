@@ -6,7 +6,7 @@ export default function Lightbox(arrayGallery) {
     const links = Array.from(document.querySelectorAll('.article-media'));
     const mediaVideo = document.querySelector('.media__video');
     const mediaImg = document.querySelector('.media__img');
-    
+    const mediaName = document.querySelector('.lightbox__media__name');
 
 // Open Modal
     links.forEach(link => {link.addEventListener('click', e =>
@@ -15,6 +15,8 @@ export default function Lightbox(arrayGallery) {
         if(link.tagName == 'VIDEO') {
             mediaVideo.setAttribute("src", e.target.getAttribute('src'));
             mediaVideo.id = link.id;
+            let i = arrayGallery.findIndex(element => element.id == mediaVideo.id);
+            mediaName.textContent = arrayGallery[i].title;
             mediaImg.id = "";
             mediaImg.setAttribute("src", "");
             mediaImg.style.display = "none";
@@ -24,6 +26,8 @@ export default function Lightbox(arrayGallery) {
         if(link.tagName =='IMG') {
             mediaImg.setAttribute("src", e.target.getAttribute('src'));
             mediaImg.id = link.id;
+            let i = arrayGallery.findIndex(element => element.id == mediaImg.id);
+            mediaName.textContent = arrayGallery[i].title;
             mediaVideo.id = "";
             mediaVideo.setAttribute("src", "");
             mediaVideo.style.display = "none";
@@ -47,6 +51,7 @@ export default function Lightbox(arrayGallery) {
 
             let imgID = mediaImg.id;
             let videoID = mediaVideo.id;
+            mediaName.textContent = "";
 
             if (imgID =="") {
                 let i = 0;
@@ -57,6 +62,7 @@ export default function Lightbox(arrayGallery) {
                 if (arrayGallery[i+1].hasOwnProperty("video")) {
                     mediaVideo.setAttribute("src", arrayGallery[i+1].url);
                     mediaVideo.id = arrayGallery[i+1].id;
+                    mediaName.textContent = arrayGallery[i+1].title;
                     mediaImg.style.display = "none";
                     mediaVideo.style.display = "block";
                 }
@@ -65,6 +71,7 @@ export default function Lightbox(arrayGallery) {
                     mediaVideo.setAttribute("src", "");
                     mediaImg.setAttribute("src", arrayGallery[i+1].url);
                     mediaImg.id = arrayGallery[i+1].id;
+                    mediaName.textContent = arrayGallery[i+1].title;
                     mediaVideo.style.display = "none";
                     mediaImg.style.display = "block";
                 } 
@@ -81,12 +88,14 @@ export default function Lightbox(arrayGallery) {
                     mediaImg.setAttribute("src", "");
                     mediaVideo.setAttribute("src", arrayGallery[j+1].url);
                     mediaVideo.id = arrayGallery[j+1].id;
+                    mediaName.textContent = arrayGallery[j+1].title;
                     mediaImg.style.display = "none";
                     mediaVideo.style.display = "block";
                 }
                 if (arrayGallery[j+1].hasOwnProperty("image")) {
                     mediaImg.setAttribute("src", arrayGallery[j+1].url);
                     mediaImg.id = arrayGallery[j+1].id;
+                    mediaName.textContent = arrayGallery[j+1].title;
                     mediaVideo.style.display = "none";
                     mediaImg.style.display = "block";
                 } 
@@ -101,6 +110,7 @@ export default function Lightbox(arrayGallery) {
         prevModal.addEventListener('click', e => {
             let imgID = mediaImg.id;
             let videoID = mediaVideo.id;
+            mediaName.textContent = "";
 
             if (imgID =="") {
                 let i = 0;
@@ -111,6 +121,7 @@ export default function Lightbox(arrayGallery) {
                 if (arrayGallery[i-1].hasOwnProperty("video")) {
                     mediaVideo.setAttribute("src", arrayGallery[i-1].url);
                     mediaVideo.id = arrayGallery[i-1].id;
+                    mediaName.textContent = arrayGallery[i-1].title;
                     mediaImg.style.display = "none";
                     mediaVideo.style.display = "block";
                 }
@@ -118,6 +129,7 @@ export default function Lightbox(arrayGallery) {
                     mediaVideo.id = "";
                     mediaImg.setAttribute("src", arrayGallery[i-1].url);
                     mediaImg.id = arrayGallery[i-1].id;
+                    mediaName.textContent = arrayGallery[i-1].title;
                     mediaVideo.style.display = "none";
                     mediaImg.style.display = "block";
                 } 
@@ -135,12 +147,14 @@ export default function Lightbox(arrayGallery) {
                     mediaImg.setAttribute("src", "");
                     mediaVideo.setAttribute("src", arrayGallery[j-1].url);
                     mediaVideo.id = arrayGallery[j-1].id;
+                    mediaName.textContent = arrayGallery[j-1].title;
                     mediaImg.style.display = "none";
                     mediaVideo.style.display = "block";
                 }
                 if (arrayGallery[j-1].hasOwnProperty("image")) {
                     mediaImg.setAttribute("src", arrayGallery[j-1].url);
                     mediaImg.id = arrayGallery[j-1].id;
+                    mediaName.textContent = arrayGallery[j-1].title;
                     mediaVideo.style.display = "none";
                     mediaImg.style.display = "block";
                 } 
