@@ -59,21 +59,35 @@ h3  {
     font-size: 18px;
 }
 
-.photograph-header div img {
+.photograph-header img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
 }
 
+nav span {
+    font-size: 18px;
+    font-family: "DM Sans";
+    font-weight: 400;
+}
+
+nav select {
+    background-color: #901C1C;
+    color: white;
+    font-size: 18px;
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+
 .gallery__sort {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     margin: 20px 100px;
     gap: 20px;
 }
-
 
 .photograph-gallery {
     display: grid;

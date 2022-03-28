@@ -18,9 +18,12 @@ function asidePhot(arrayGallery, price) {
     const asidePrice = document.createElement( 'SPAN' );
 
     asideLikes.classList.add('asideLikes');
+    asideLikes.setAttribute("alt", "total likes");
     asideLikes.textContent = totalLikes;
     asideHeart.classList.add('fas', 'fa-heart');
+    asideHeart.setAttribute("alt", "heart icon");
     asidePrice.textContent = price + " €/jour";
+    asidePrice.setAttribute("alt", "Photographer price");
 
     photSumn.appendChild(asideTotalLikes);
     asideTotalLikes.appendChild(asideLikes);

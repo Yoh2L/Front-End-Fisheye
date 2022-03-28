@@ -18,7 +18,7 @@
   <body>
     <header>
       <a href="./index.html">
-        <img src="./assets/images/logo.png" class="logo" />
+        <img src="./assets/images/logo.png" class="logo" alt="Fisheye home page" />
       </a>
       
     </header>
@@ -26,7 +26,7 @@
 
 <!-- Photographer header -->
       <section class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" onclick="displayModal()" aria-label="Contact me">Contactez-moi</button>
       </section>
 
 <!-- Sort gallery -->
@@ -47,10 +47,10 @@
       <aside class="photograph-sumn"></aside>
 
 <!-- Lightbox -->
-      <div class="lightbox">
-        <button class="lightbox__close"></button>
-        <button class="lightbox__next"></button>
-        <button class="lightbox__prev"></button>
+      <div class="lightbox" aria-label="image closeup view">
+        <button class="lightbox__close" aria-label="close dialog"></button>
+        <button class="lightbox__next" aria-label="next image"></button>
+        <button class="lightbox__prev" aria-label="previous image"></button>
         <div class="lightbox__container">
           <img src="" alt="" class="lightbox__media media__img">
           <video controls src="" class="lightbox__media media__video"></video>
@@ -60,25 +60,25 @@
 
 <!-- Contact modal -->
       <div id="contact_modal"> 
-        <div class="modal">
+        <div class="modal" aria-label="Contact form" >
           <header>
             <h2>Contactez-moi</h2>
-            <img src="./assets/icons/close.svg" onclick="closeModal()" />
+            <img src="./assets/icons/close.svg" onclick="closeModal()" alt="Close contact form" />
             
           </header>
           <form>
-            <div class="photName__div"></div>
+            <div class="photName__div" aria-label="Photographer name"></div>
             <div>
-              <label>Prénom</label>
-              <input type="text" id="fname">
-              <label>Nom</label>
-              <input type="text" id="name">
-              <label>Email</label>
-              <input type="text" id="email">
-              <label>Votre message</label>
-              <input type="text" id="message">
+              <label id="first-name">Prénom</label>
+              <input type="text" id="fname" aria-labelledby="first-name">
+              <label id="last-name">Nom</label>
+              <input type="text" id="name" aria-labelledby="last-name">
+              <label id="mail">Email</label>
+              <input type="text" id="email" aria-labelledby="mail">
+              <label id="input-message">Votre message</label>
+              <input type="text" id="message" aria-labelledby="message">
             </div>
-            <button type="button" class="sendForm contact_button">Envoyer</button>
+            <button type="button" class="sendForm contact_button" aria-label="Send">Envoyer</button>
           </form>
         </div>
       </div>

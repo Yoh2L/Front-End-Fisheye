@@ -7,7 +7,7 @@ function displayModal() {
     photName__div.innerHTML = photName.textContent;
 
     const sendForm = document.querySelector(".sendForm");
-    let fname__form = document.getElementById("fname");
+    const fname__form = document.getElementById("fname");
     const name__form = document.getElementById("name");
     const email__form = document.getElementById("email");
     const message__form = document.getElementById("message");

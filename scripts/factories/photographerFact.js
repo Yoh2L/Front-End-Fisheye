@@ -8,18 +8,22 @@ function photographerFactory (data) {
         // Creation de la  bio de l'artiste
         const photBio = document.createElement('div');
         photBio.classList.add('bio');
+        photBio.setAttribute("alt", "Photographer bio");
         const photName = document.createElement( 'h2' );
         const photCity = document.createElement( 'h3' );
         const photSpeach = document.createElement( 'SPAN' );
         photName.textContent = name;
+        photName.setAttribute("alt", "Photographer name");
         photCity.textContent = city + ", " + country;
+        photCity.setAttribute("alt", "Photographer city");
         photSpeach.textContent = tagline;
+        photSpeach.setAttribute("alt", "Photographer speach");
 
         // Creation de la photo de l'artiste
-        const photPic = document.createElement('div');
         const picture = `./assets/photographers/Photographers_ID_Photos/${portrait}`;
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
+        img.setAttribute("src", picture);
+        img.setAttribute("alt", name);
 
         // Gestion de l'arborescence DOM
         photHeader.appendChild(photBio);
@@ -27,8 +31,7 @@ function photographerFactory (data) {
         photBio.appendChild(photName);
         photBio.appendChild(photCity);
         photBio.appendChild(photSpeach);
-        photHeader.appendChild(photPic);
-        photPic.appendChild(img);
+        photHeader.appendChild(img);
         photHeader.insertBefore(photBio, contactBtn);
 
         return (photHeader);
@@ -50,6 +53,7 @@ function generateGallery() {
         link.setAttribute("href", url);
         const media = document.createElement( image ?'img': 'video' );
         media.setAttribute("src", url)
+        media.setAttribute("alt", title);
         media.classList.add('article-media');
         media.id = id;
 
@@ -62,15 +66,13 @@ function generateGallery() {
         const totalLikes = document.createElement( 'div' );
         totalLikes.classList.add('likes');
 
-/*         const heart_div = document.createElement( 'div' );
-        heart_div.classList.add('heart_div');
-        const heart_far = document.createElement( 'SPAN');
-        heart_far.classList.add('far', 'fa-heart'); */
         const heart_fas = document.createElement( 'SPAN');
         heart_fas.classList.add('fas', 'fa-heart');
+        heart_fas.setAttribute("alt", "like icon");
 
         const nbrLikes = document.createElement( 'SPAN');
         nbrLikes.classList.add('nbrLikes');
+        nbrLikes.setAttribute("alt", "number of likes");
         nbrLikes.textContent = likes;
 
 
