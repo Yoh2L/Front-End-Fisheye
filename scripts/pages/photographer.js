@@ -140,8 +140,8 @@ function Likes(arrayGallery) {
     likes.forEach(element => {element.addEventListener('click', e => {
             let nbrLikes = element.querySelector(".nbrLikes");
             let asideLikes = document.querySelector('.asideLikes');
-            const mediaID = element.parentElement.parentElement.firstChild.firstChild.id;
-            /* const media ID = e.target.closest("article").querySelector(".article-media").getAttribute("data-id") */
+            /* const mediaID = element.parentElement.parentElement.firstChild.firstChild.id; */
+            const mediaID = e.target.closest("article").querySelector(".article-media").getAttribute("id");
             const mediaLikes = arrayGallery.find(element => element.id == mediaID);
             
             if (mediaLikes.like == "liked") {
