@@ -35,6 +35,7 @@ function photographerFactory(data) {
         subTxt.appendChild(photCity);
         subTxt.appendChild(photSpeach);
         subTxt.appendChild(photPrice);
+        
         return (article);
     }
     return { getUserCardDOM }
