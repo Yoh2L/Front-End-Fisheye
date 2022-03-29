@@ -57,14 +57,11 @@ async function init() {
     const lightboxModal = document.querySelector('.lightbox');
     nextModal.addEventListener('click', nextMedia.bind(arrayGallery));
 
-
     document.addEventListener('keydown', handleKeydown);
 
-    document.addEventListener('keydown', handleKeydown(arrayGallery));
-
-    function handleKeydown (event, arrayGallery) { 
+    function handleKeydown (e) { 
         
-        if (event.code === "ArrowRight") { 
+        if (e.code == "ArrowRight") { 
             console.log("TEST");
             nextMedia.bind(arrayGallery) }
     }
