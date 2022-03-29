@@ -263,7 +263,6 @@ nav select {
     opacity: .5;
     cursor: pointer;
     border: none;
-    transform: .3s;
 }
 
 .lightbox button:hover {

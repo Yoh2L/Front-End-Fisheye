@@ -13,8 +13,11 @@ function photographerFactory(data) {
         anchor.setAttribute('id', id )
         anchor.setAttribute('href',"./photographer.html?id=" + id);
 
-        const subTxt = document.createElement( 'div' );
+        const PhotPic = document.createElement( 'div' );
+        PhotPic.setAttribute("tabindex", 0);
+        const subTxt = document.createElement( 'section' );
         subTxt.setAttribute("alt", "Photographer bio");
+        subTxt.setAttribute("tabindex", 0);
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", name);
@@ -29,9 +32,10 @@ function photographerFactory(data) {
         photSpeach.textContent = tagline;
         photPrice.textContent = price + "€/jour";
         article.appendChild(anchor);
-        article.appendChild(subTxt);
-        anchor.appendChild(img);
-        anchor.appendChild(photName);
+        anchor.appendChild(PhotPic);
+        anchor.appendChild(subTxt);
+        PhotPic.appendChild(img);
+        PhotPic.appendChild(photName);
         subTxt.appendChild(photCity);
         subTxt.appendChild(photSpeach);
         subTxt.appendChild(photPrice);

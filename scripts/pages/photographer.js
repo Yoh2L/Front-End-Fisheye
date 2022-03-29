@@ -54,14 +54,26 @@ async function init() {
     const nextModal = document.querySelector('.lightbox__next');
     const prevModal = document.querySelector('.lightbox__prev');
     const closeModal = document.querySelector('.lightbox__close');
+    const lightboxModal = document.querySelector('.lightbox');
     nextModal.addEventListener('click', nextMedia.bind(arrayGallery));
-    prevModal.addEventListener('click', prevMedia.bind(arrayGallery));
-    closeModal.addEventListener('click', closeMedia);
+
+
+    document.addEventListener('keydown', handleKeydown);
+
+    document.addEventListener('keydown', handleKeydown(arrayGallery));
+
+    function handleKeydown (event, arrayGallery) { 
+        if (event.code === "ArrowRight") { nextMedia(arrayGallery) }
+    }
     
     
+        prevModal.addEventListener('click', prevMedia.bind(arrayGallery));
+        closeModal.addEventListener('click', closeMedia);
+
 };
 
 init();
+
 
 
 
