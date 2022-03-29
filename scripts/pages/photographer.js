@@ -63,7 +63,10 @@ async function init() {
     document.addEventListener('keydown', handleKeydown(arrayGallery));
 
     function handleKeydown (event, arrayGallery) { 
-        if (event.code === "ArrowRight") { nextMedia(arrayGallery) }
+        
+        if (event.code === "ArrowRight") { 
+            console.log("TEST");
+            nextMedia.bind(arrayGallery) }
     }
     
     
