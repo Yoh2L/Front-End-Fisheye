@@ -83,8 +83,7 @@ function generateGallery() {
         subText.appendChild(totalLikes);
         totalLikes.appendChild(nbrLikes);
         totalLikes.appendChild(heart_fas);
-/*         heart_div.appendChild(heart_fas);
-        heart_div.appendChild(heart_far); */
+
         return (article);
     
 }
