@@ -1,3 +1,4 @@
+// Fonction fetch - recuperation des datas du fichier json
 async function getPhotographers() {
     let json = "./data/photographers.json"
     try {
@@ -6,17 +7,15 @@ async function getPhotographers() {
     } catch (error) {
         console.error(error);
     }
-
-
 };
 
+// Affichage du photographe et de ses infos
 function displayPhotographer(photographer) {
-
     const photographerDOM = photographerFactory(photographer);
     photographerDOM.generatephotographerCard();
-
 };
 
+// Affichage de la galerie de medias
 function displayGallery(arrayGallery) {
     const photGallery = document.querySelector(".photograph-gallery");
 
@@ -47,28 +46,31 @@ async function init() {
         return media;
     })
 
+// Appel des fonctions d'affichage du photographe, du compteur et des fonctions de tri. Tri par défaut sur populaire
     displayPhotographer(photographer);
     asidePhot(arrayGallery, photographer.price)
     sort(arrayGallery);
     sortPopular(arrayGallery);
+
+// Event listener click et clavier de gestion des lightbox (précédent, suivant, fermeture)
     const nextModal = document.querySelector('.lightbox__next');
     const prevModal = document.querySelector('.lightbox__prev');
     const closeModal = document.querySelector('.lightbox__close');
-    const lightboxModal = document.querySelector('.lightbox');
+    
     nextModal.addEventListener('click', nextMedia.bind(arrayGallery));
+    prevModal.addEventListener('click', prevMedia.bind(arrayGallery));
+    closeModal.addEventListener('click', closeMedia);
 
     document.addEventListener('keydown', handleKeydown);
 
     function handleKeydown (e) { 
-        
         if (e.code == "ArrowRight") { 
-            console.log("TEST");
-            nextMedia.bind(arrayGallery) }
+            nextMedia.bind(arrayGallery)() }
+        if (e.code == "ArrowLeft") {
+            prevMedia.bind(arrayGallery)() }
+        if (e.code == "Escape") { 
+            closeMedia() }
     }
-    
-    
-        prevModal.addEventListener('click', prevMedia.bind(arrayGallery));
-        closeModal.addEventListener('click', closeMedia);
 
 };
 
@@ -76,7 +78,7 @@ init();
 
 
 
-
+// Gestion du tri selon le filtre sélectionné
 function sort(arrayGallery) {
     let getSelect = document.getElementById("select__sort");
     getSelect.addEventListener('change', e => {
@@ -145,14 +147,13 @@ function sortDate(arrayGallery) {
     
 };
 
-
+// Gestion du systeme de like. Memorisation des likes dans le tableau de données pour conserver au changement de filtre.
 function Likes(arrayGallery) {
     const likes = document.querySelectorAll(".likes");
 
     likes.forEach(element => {element.addEventListener('click', e => {
             let nbrLikes = element.querySelector(".nbrLikes");
             let asideLikes = document.querySelector('.asideLikes');
-            /* const mediaID = element.parentElement.parentElement.firstChild.firstChild.id; */
             const mediaID = e.target.closest("article").querySelector(".article-media").getAttribute("id");
             const mediaLikes = arrayGallery.find(element => element.id == mediaID);
             
@@ -175,29 +176,23 @@ function Likes(arrayGallery) {
 
 }
 
-
-    
-
-
 // Open Modal
 function openModal(arrayGallery) {
-
 
     const mediaVideo = document.querySelector('.media__video');
     const mediaImg = document.querySelector('.media__img');
     const mediaName = document.querySelector('.lightbox__media__name');
     const links = Array.from(document.querySelectorAll('.article-media'));
-    
     const lightboxDOM = document.querySelector('.lightbox');
 
     lightboxDOM.style.display = "none";
 
-    links.forEach(link => {link.addEventListener('click', e =>
-        {
+// Gestion d'ouverture de modal en fonction du type (image ou video)
+    function mediaClick (e) {
         e.preventDefault();
-        if(link.tagName == 'VIDEO') {
+        if(this.tagName == 'VIDEO') {
             mediaVideo.setAttribute("src", e.target.getAttribute('src'));
-            mediaVideo.id = link.id;
+            mediaVideo.id = this.id;
             let i = arrayGallery.findIndex(element => element.id == mediaVideo.id);
             mediaName.textContent = arrayGallery[i].title;
             mediaImg.id = "";
@@ -207,9 +202,9 @@ function openModal(arrayGallery) {
             mediaVideo.style.display = "block";
     }
 
-        if(link.tagName =='IMG') {
+        if(this.tagName =='IMG') {
             mediaImg.setAttribute("src", e.target.getAttribute('src'));
-            mediaImg.id = link.id;
+            mediaImg.id = this.id;
             let i = arrayGallery.findIndex(element => element.id == mediaImg.id);
             mediaName.textContent = arrayGallery[i].title;
             mediaVideo.id = "";
@@ -217,11 +212,16 @@ function openModal(arrayGallery) {
             lightboxDOM.style.display = "block";
             mediaVideo.style.display = "none";
             mediaImg.style.display = "block";
-
         }
         
 
-    })});
+    }
+// Listener d'ouverture de lightbox au clique ou clavier
+links.forEach(link => {
+    link.addEventListener('click', mediaClick.bind(link));
+    link.addEventListener('keydown', e => { if (e.code == "Enter") mediaClick.bind(link)(e) });
+});
+
 };
 
 // Close Modal
@@ -352,6 +352,3 @@ function openModal(arrayGallery) {
             } 
         }
     }
-
-
-    

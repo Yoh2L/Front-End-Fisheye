@@ -180,13 +180,16 @@ nav select {
 
 .lightbox {
     position: fixed;
+    margin: 0;
+    padding: 0;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    border: none;
     background-color: white;
     z-index: 10;
-    overflow: auto;
+    overflow: hidden;
     animation: lightboxIn .5s;
     transition: opacity .3s;
 }
@@ -217,7 +220,7 @@ nav select {
     margin-left: 70px;
     margin-right: 70px;
     overflow: hidden;
-    height: 90vh;
+    height: 85vh;
 }
 
 .lightbox__media__name {

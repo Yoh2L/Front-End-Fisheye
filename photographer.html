@@ -44,19 +44,7 @@
       <section class="photograph-gallery"></section>
 
 <!-- Photograph sumn likes and price -->
-      <aside class="photograph-sumn"></aside>
-
-<!-- Lightbox -->
-      <div class="lightbox" aria-label="image closeup view">
-        <button class="lightbox__close" aria-label="close dialog"></button>
-        <button class="lightbox__next" aria-label="next image"></button>
-        <button class="lightbox__prev" aria-label="previous image"></button>
-        <div class="lightbox__container">
-          <img src="" alt="" class="lightbox__media media__img">
-          <video controls src="" class="lightbox__media media__video"></video>
-          <div class="lightbox__media__name"></div>
-        </div>
-      </div>
+      <aside class="photograph-sumn" tabindex="0"></aside>
 
 <!-- Contact modal -->
       <div id="contact_modal"> 
@@ -83,6 +71,19 @@
         </div>
       </div>
     </main> 
+
+    <!-- Lightbox -->
+    <dialog class="lightbox" aria-label="image closeup view" tabindex="0">
+      <button class="lightbox__prev" aria-label="previous image" tabindex="0"></button>
+      <button class="lightbox__next" aria-label="next image" tabindex="0"></button>
+      <button class="lightbox__close" aria-label="close dialog" tabindex="0"></button>
+      <div class="lightbox__container">
+        <img src="" alt="" class="lightbox__media media__img" tabindex="0">
+        <video controls src="" class="lightbox__media media__video" tabindex="0"></video>
+        <div class="lightbox__media__name" tabindex="0"></div>
+      </div>
+    </dialog>
+
     <script src="./scripts/pages/photographer.js" type="module"></script>
     <script src="./scripts/factories/photographerFact.js"></script>
     <script src="./scripts/components/aside.js"></script>

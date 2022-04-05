@@ -9,19 +9,19 @@ function asidePhot(arrayGallery, price) {
         totalLikes += parseInt(element.likes);
     });
     
-    /* const toto = arrayGallery.reduce((acc,cur)=>acc+= parseInt(cur.likes),0) */
 
     const asideTotalLikes = document.createElement( 'div' );
     const asideLikes = document.createElement( 'SPAN' );
-    const asideHeart = document.createElement( 'SPAN' );
-    asideHeart.classList.add('aside-heart');
-    const asidePrice = document.createElement( 'SPAN' );
-
     asideLikes.classList.add('asideLikes');
     asideLikes.setAttribute("alt", "total likes");
     asideLikes.textContent = totalLikes;
+
+    const asideHeart = document.createElement( 'SPAN' );
+    asideHeart.classList.add('aside-heart');
     asideHeart.classList.add('fas', 'fa-heart');
     asideHeart.setAttribute("alt", "heart icon");
+
+    const asidePrice = document.createElement( 'SPAN' );
     asidePrice.textContent = price + " €/jour";
     asidePrice.setAttribute("alt", "Photographer price");
 

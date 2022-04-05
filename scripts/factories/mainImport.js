@@ -15,22 +15,30 @@ function photographerFactory(data) {
 
         const PhotPic = document.createElement( 'div' );
         PhotPic.setAttribute("tabindex", 0);
+
         const subTxt = document.createElement( 'section' );
         subTxt.setAttribute("alt", "Photographer bio");
         subTxt.setAttribute("tabindex", 0);
+
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", name);
+
         const photName = document.createElement( 'h2' );
+        photName.textContent = name;
+
         const photCity = document.createElement( 'h3' );
+        photCity.textContent = city + ", " + country;
+
         const photSpeach = document.createElement( "SPAN" );
         photSpeach.setAttribute("alt", "Photographer speach");
+        photSpeach.textContent = tagline;
+
         const photPrice = document.createElement( "SPAN" );
         photPrice.setAttribute("alt", "Photographer price");
-        photName.textContent = name;
-        photCity.textContent = city + ", " + country;
-        photSpeach.textContent = tagline;
         photPrice.textContent = price + "€/jour";
+
+        // Arborescence DOM
         article.appendChild(anchor);
         anchor.appendChild(PhotPic);
         anchor.appendChild(subTxt);
