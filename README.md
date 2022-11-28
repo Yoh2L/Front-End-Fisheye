@@ -1,6 +1,10 @@
-# Base de code du projet P6 - Parcours Front-end
+![image](https://user-images.githubusercontent.com/91601155/204239593-b1a1656a-38c0-48fe-8724-6b91954c99a6.png)
 
-## Démarrer le projet
+### FishEye est un site web qui permet aux photographes indépendants de présenter leurs meilleurs travaux.
 
-Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.
+Objectifs :
+- Assurer l'accéssibilité d'un site web ;
+- Gérer les évènements d'un site avec Javascript ;
+- Développer une application web modulaire avec des designs patterns ;
+- Ecrire du code JavaScript maintenable.
 
